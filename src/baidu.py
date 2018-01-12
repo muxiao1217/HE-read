@@ -3,6 +3,7 @@ import json
 from src.image_process import image_to_base64
 import time
 import pyautogui
+import math
 
 
 class Baidu():
@@ -38,11 +39,15 @@ class Baidu():
         }, headers=headers)
         print(response.text)
         content = json.loads(response.text)
-        # for result in content['words_result']:
-        #     print(result)
-        result = content['words_result'][1]['words']
+        pathology_no = ""
+        for result in content['words_result']:
+            if result['words'].isdigit():
+                print(result['words'])
+                pathology_no = result['words']
+                break
+        # result = content['words_result'][1]['words']
         time.sleep(2)
-        pyautogui.typewrite(result + "\n", 0.01)
+        pyautogui.typewrite(pathology_no + "\n", 0.01)
 
 
 if __name__ == '__main__':
