@@ -7,7 +7,7 @@ def read():
     camera = cv2.VideoCapture(0)
     success, frame = camera.read()
     baidu = Baidu()
-    frame = cv2.imread('C:/project/code/HE-read/src/1.jpg')
+    # frame = cv2.imread('C:/project/code/HE-read/src/1.jpg')
     baidu.read_image_text(frame)
     camera.release()
 
