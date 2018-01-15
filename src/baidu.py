@@ -1,7 +1,6 @@
 import requests
 import json
 from src.image_process import image_to_base64
-import time
 import pyautogui
 
 
@@ -45,7 +44,6 @@ class Baidu():
                 pathology_no = result['words']
                 break
         # result = content['words_result'][1]['words']
-        time.sleep(2)
         pyautogui.typewrite(pathology_no + "\n", 0.01)
 
 
