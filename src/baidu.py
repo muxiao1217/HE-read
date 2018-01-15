@@ -3,7 +3,6 @@ import json
 from src.image_process import image_to_base64
 import time
 import pyautogui
-import math
 
 
 class Baidu():

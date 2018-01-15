@@ -1,6 +1,6 @@
 import cv2
-import pyHook
 from src.baidu import Baidu
+import socket
 
 
 def read():
@@ -12,19 +12,20 @@ def read():
     camera.release()
 
 
-def keyboard_event(event):
-    print(event)
-    key = event.Key
-    if key == 'F8':
-        read()
-    return True
+def create_socket():
+    sk = socket.socket()
+    sk.bind(("127.0.0.1", 8888))
+    sk.listen(5)
+    while True:
+        conn, _ = sk.accept()
+        accept_data = str(conn.recv(1024),
+                          encoding="utf8")
+        print(accept_data)
+        if accept_data == '200':
+            read()
+        print(accept_data)
 
 
 if __name__ == '__main__':
-    import pythoncom
-
-    print("已启动")
-    hm = pyHook.HookManager()
-    hm.HookKeyboard()
-    hm.KeyDown = keyboard_event
-    pythoncom.PumpMessages()
+    print('read start')
+    create_socket()
